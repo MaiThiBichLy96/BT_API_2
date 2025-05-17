@@ -1,0 +1,119 @@
+{
+	"info": {
+		"_postman_id": "fbe5e475-87b9-4f47-bbfd-f5da1b9719b8",
+		"name": "Collection_testcase",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38820600"
+	},
+	"item": [
+		{
+			"name": "testcaselogin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var case_test = pm.variables.get(\"case\");\r",
+							"var expMs = pm.variables.get(\"expectedmsg\");\r",
+							"if(case_test == 1)\r",
+							"{\r",
+							"    pm.test(\"Check token\", function () {\r",
+							"        var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.token).to.eql(expMs);\r",
+							"    });\r",
+							"}\r",
+							"else\r",
+							"{\r",
+							"pm.test(\"Check token\", function () {\r",
+							"        var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.error).to.eql(expMs);\r",
+							"    });\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"email\": \"{{userLogin}}\", // email đăng nhập, required\r\n\"password\": \"{{pass}}\" // mật khẩu, required\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/login",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "testcasetaouser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json()\r",
+							"var actName = jsonData.name\r",
+							"var actJob = jsonData.job\r",
+							"var expName = pm.variables.get(\"name\");\r",
+							"var expJob = pm.variables.get(\"job\");\r",
+							"pm.test(\"Check name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(actName).to.eql(expName);\r",
+							"});\r",
+							"pm.test(\"Check job\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(actJob).to.eql(expJob);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"{{name}}\", // tên user - not required\r\n\"job\": \"{{job}}\" // nghề nghiệp user - not required\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
