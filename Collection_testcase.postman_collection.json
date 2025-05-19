@@ -10,7 +10,7 @@
 			"name": "testcaselogin",
 			"event": [
 				{
-					"listen": "test999",
+					"listen": "test",
 					"script": {
 						"exec": [
 							"var case_test = pm.variables.get(\"case\");\r",
