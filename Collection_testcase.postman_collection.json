@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "testcaselogin99",
+			"name": "testcaselogin",
 			"event": [
 				{
 					"listen": "test",
